@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Небесный Ковчег</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="stage"></canvas>
+
+<div class="hud" id="hud"></div>
+<div class="side-panel" id="sidepanel"></div>
+<div class="modal-layer" id="modal"></div>
+<div class="toasts" id="toasts"></div>
+
+<!-- Порядок подключения важен. Движок первым. -->
+<script src="js/core.js"></script>
+<script src="js/data.js"></script>
+<script src="js/squads.js"></script>
+<script src="js/city.js"></script>
+<script src="js/expedition.js"></script>
+<script src="js/turn.js"></script>
+<script src="js/render/sky.js"></script>
+<script src="js/render/city.js"></script>
+<script src="js/render/map.js"></script>
+<script src="js/render/exp.js"></script>
+<script src="js/ui/hud.js"></script>
+<script src="js/ui/modal.js"></script>
+<script src="js/ui/panels.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
