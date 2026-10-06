@@ -32,6 +32,7 @@ class Game {
     this.scene = 'city';
     this.panelEl = null;
     this.panelName = null;
+    this._expDirty = true;
 
     this.w = 0;
     this.h = 0;
@@ -679,6 +680,7 @@ class Game {
         addLog(S, `«${sq.name}» вернулся с вылазки. ${res.summary}.`, 'good');
         this.modal.toast(`Возвращение: ${res.summary}`, 'good');
         S.expedition = null;
+         this._expDirty = true;
         this.setScene('city');
       }
       return;
@@ -698,6 +700,7 @@ class Game {
       this.expView.hit();
     }
     if (this.hud) this.hud.update(S);
+     this._expDirty = true;
   }
 
   expeditionFight(mode) {
@@ -716,6 +719,7 @@ class Game {
       this.modal.toast('Отряд уничтожен', 'bad');
       setTimeout(() => {
         S.expedition = null;
+         this._expDirty = true;
         this.setScene('city');
       }, 900);
     } else if (res.fled) {
@@ -724,6 +728,7 @@ class Game {
     }
 
     if (this.hud) this.hud.update(S);
+     this._expDirty = true;
   }
 
   /* ---------- прибытие в узел ---------- */
@@ -824,7 +829,11 @@ class Game {
         this.sky.draw(cx, this.w, this.h);
         const sq = Expedition.squad(this.state);
         this.expView.draw(cx, this.w, this.h, this.state, sq);
-        this._expeditionUI();
+    if (this._expDirty) {
+       this._expDirty = false;
+       this._expeditionUI();
+        }
+      }
       } else {
         this.sky.draw(cx, this.w, this.h);
         this.sky.drawClouds(cx, this.w, this.h, 0, 2, 0.7);
