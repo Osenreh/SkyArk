@@ -400,6 +400,7 @@ class Game {
     if (!this.state) return;
     this.scene = name;
     this.state.phase = name;
+    this._expDirty = true; 
     this.closePanel();
     this._renderDock();
     if (name === 'map') {
